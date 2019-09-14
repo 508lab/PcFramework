@@ -3,16 +3,65 @@
 init();
 
 function init() {
-    Application.httpGet('/warehouse/', function (data) {
+    Application.httpGet('/warehouse', function (data) {
         let html = '';
         data.map(function (ele) {
             html += fullListView(JSON.parse(ele));
         });
+        // $("#example").dataTable().fnDestroy();
         $('#example tbody').html(html);
-        initTbody();
+        // initTbody();
     });
-
+    initValidate();
     search();
+    initContribution();
+}
+
+/**
+ * 初始化验证
+ */
+function initValidate() {
+    bootstrapValidate(
+        '#email',
+        'email:Enter a valid E-Mail Address!'
+    );
+}
+/**
+ * 订阅
+ */
+function initContribution() {
+    $('#contribution').click(function (e) {
+        let email = $('#email').val();
+        let error = $('#email').parent().hasClass('has-error');
+        if (email && !error) {
+            $.ajax({
+                url: Application.APIURL + '/subscribe',
+                method: "POST",
+                headers: {
+                    "content-type": "application/json",
+                },
+                data: JSON.stringify({
+                    email: email
+                }),
+                success: function (data) {
+                    let res = JSON.parse(data);
+                    if (res.status === 200) {
+                        alert('订阅成功。');
+                        $('#myModal').modal('hide');
+                    } else {
+                        alert('服务器异常');
+                    }
+
+                },
+                error: function (err) {
+                    let error = JSON.parse(err.responseText);
+                    if (error.status === 500) {
+                        alert('账号已订阅');
+                    }
+                }
+            })
+        }
+    })
 }
 /**
  * 填充Tbody View
@@ -20,10 +69,8 @@ function init() {
 function fullListView(ele) {
     let tagView = fullTagView(ele.d.split(','));
     return `<tr>
-                <td>${ele.t}</td>
-                <td>${ele.type}</td>
+                <td><a href="${ele.l}" target="_blank">${ele.t}</a></td>
                 <td>${tagView}</td>
-                <td><a href="${ele.l}" target="_blank">查看</a></td>
             </tr>`;
 }
 
@@ -73,8 +120,8 @@ function queryByQ(q) {
         data.map(function (ele) {
             html += fullListView(JSON.parse(ele));
         });
-        $("#example").dataTable().fnDestroy();
+        // $("#example").dataTable().fnDestroy();
         $('#example tbody').html(html);
-        initTbody();
+        // initTbody();
     });
 }

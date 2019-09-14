@@ -1,5 +1,6 @@
 const Application = {
     APIURL: "http://localhost:8080/v1/api",
+    // APIURL: "https://api.dongkji.com/v1/api",
 
 
     httpGet: function (uri, callback) {
