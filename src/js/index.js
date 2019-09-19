@@ -3,6 +3,7 @@
 init();
 
 function init() {
+    $('body').mLoading("show");
     Application.httpGet('/warehouse', function (data) {
         let html = '';
         data.map(function (ele) {
@@ -11,6 +12,7 @@ function init() {
         // $("#example").dataTable().fnDestroy();
         $('#example tbody').html(html);
         // initTbody();
+        $('body').mLoading("hide");
     });
     initValidate();
     search();
@@ -34,6 +36,7 @@ function initContribution() {
         let email = $('#email').val();
         let error = $('#email').parent().hasClass('has-error');
         if (email && !error) {
+            $('body').mLoading("show");
             $.ajax({
                 url: Application.APIURL + '/subscribe',
                 method: "POST",
@@ -51,9 +54,10 @@ function initContribution() {
                     } else {
                         alert('服务器异常');
                     }
-
+                    $('body').mLoading("hide");
                 },
                 error: function (err) {
+                    $('body').mLoading("hide");
                     let error = JSON.parse(err.responseText);
                     if (error.status === 500) {
                         alert('账号已订阅');
@@ -101,20 +105,33 @@ function initTbody() {
     });
 }
 
-
+/**
+ * 查询
+ */
 function search() {
     $('#search').click(function () {
-        let q = $('#q').val();
-        if (q && q !== '') {
-            queryByQ(q);
-        } else {
-            alert("输入不能为空！");
-        }
+        searchByQ();
+    })
 
+    $('#q').keydown(function (e) {
+        if (e.keyCode === 13) {
+            searchByQ();
+        }
     })
 }
 
+function searchByQ() {
+    let q = $('#q').val();
+    if (q && q !== '') {
+        queryByQ(q);
+    } else {
+        queryByQ('*');
+        alert("输入不能为空！");
+    }
+}
+
 function queryByQ(q) {
+    $('body').mLoading("show");
     Application.httpGet('/warehouse/search/' + q, function (data) {
         let html = '';
         data.map(function (ele) {
@@ -123,5 +140,6 @@ function queryByQ(q) {
         // $("#example").dataTable().fnDestroy();
         $('#example tbody').html(html);
         // initTbody();
+        $('body').mLoading("hide");
     });
 }

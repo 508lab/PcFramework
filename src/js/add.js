@@ -37,6 +37,7 @@ function add() {
 }
 
 function addItem(data, uri) {
+    $('body').mLoading("show");
     $.ajax({
         url: Application.APIURL + uri,
         method: "POST",
@@ -46,12 +47,16 @@ function addItem(data, uri) {
         data: JSON.stringify(data),
         success: function (data) {
             let res = JSON.parse(data);
+            $('body').mLoading("hide");
             if (res.status === 200) {
                 alert('上传成功,感谢您的贡献。');
                 window.location.reload();
             } else {
                 alert('服务器异常');
             }
+        },
+        error: function (err) {
+            $('body').mLoading("hide");
         }
     })
 }
