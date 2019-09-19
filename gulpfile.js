@@ -10,7 +10,6 @@ const browserSync = require('browser-sync').create();
  * html task
  */
 async function htmlTask() {
-    console.log('a')
     return src('src/**.html')
         .pipe(fileinclude({
             prefix: '@@',
@@ -75,7 +74,7 @@ async function tasks(env) {
  */
 async function start() {
     await tasks();
-    watch('src/css/**', pluginTask);
+    watch('src/css/**', cssTask);
     watch('src/js/**', jsTask);
     watch('src/plugin/**', pluginTask);
     watch('src/**.html', htmlTask);
