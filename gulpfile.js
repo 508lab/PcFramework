@@ -1,4 +1,5 @@
-const { src, dest, watch } = require('gulp');
+const { src, dest, watch, series } = require('gulp');
+const { delDir } = require('./until/file');
 const uglifycss = require('gulp-uglifycss');
 const htmlmin = require('gulp-htmlmin');
 const babel = require('gulp-babel');
@@ -10,7 +11,6 @@ const browserSync = require('browser-sync').create();
  * html task
  */
 async function htmlTask() {
-    console.log('a')
     return src('src/**.html')
         .pipe(fileinclude({
             prefix: '@@',
@@ -20,11 +20,23 @@ async function htmlTask() {
         .pipe(dest('dist'));
 }
 
+async function pageTask() {
+    delDir(__dirname + '/dist/page');
+    return src('src/page/**')
+        .pipe(fileinclude({
+            prefix: '@@',
+            basepath: '@file'
+        }))
+        .pipe(htmlmin({ collapseWhitespace: true }))
+        .pipe(dest('dist/page/'));
+}
+
 
 /**
  * js task
  */
 async function jsTask(env) {
+    delDir(__dirname + '/dist/js');
     if (env === 'build') {
         return src('src/js/*.js')
             .pipe(babel({
@@ -43,6 +55,7 @@ async function jsTask(env) {
  * css task
  */
 async function cssTask() {
+    delDir(__dirname + '/dist/css');
     return src('src/css/**')
         .pipe(uglifycss({
             "maxLineLen": 80,
@@ -54,8 +67,18 @@ async function cssTask() {
  * plugin task
  */
 async function pluginTask() {
+    delDir(__dirname + '/dist/plugin');
     return src('src/plugin/**')
         .pipe(dest('dist/plugin/'));
+}
+
+/**
+ * img task
+ */
+async function imgTask() {
+    delDir(__dirname + '/dist/img');
+    return src('src/img/**')
+        .pipe(dest('dist/img/'));
 }
 
 
@@ -64,10 +87,13 @@ async function pluginTask() {
  * all task
  */
 async function tasks(env) {
+    delDir(__dirname + '/dist');
     await htmlTask();
+    await imgTask();
     await jsTask(env);
     await pluginTask();
     await cssTask();
+    await pageTask();
 }
 
 /**
@@ -75,11 +101,13 @@ async function tasks(env) {
  */
 async function start() {
     await tasks();
-    watch('src/css/**', pluginTask);
+    watch('src/css/**', cssTask);
     watch('src/js/**', jsTask);
+    watch('src/img/**', imgTask);
     watch('src/plugin/**', pluginTask);
     watch('src/**.html', htmlTask);
-    watch('src/public/**.html', htmlTask);
+    watch('src/page/**.html', pageTask);
+    watch('src/public/**.html', series(htmlTask, pageTask));
     browserSync.init({
         port: 8000,
         server: {

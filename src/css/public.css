@@ -1,0 +1,28 @@
+footer{
+    padding-top: 20px;
+    padding-bottom: 20px;
+    margin-top: 100px;
+    color: #99979c;
+    text-align: center;
+    background-color: #2a2730;
+}
+footer .row{
+    margin: 0 auto;
+    color: white;
+}
+
+footer .row div.com{
+    margin: 12px 0;
+}
+
+footer .row div.com a{
+    color: hsla(0,0%,100%,.9);
+}
+
+footer .row h5{
+    font-size: 16px;
+}
+
+header a{
+    font-size: 18px;
+}

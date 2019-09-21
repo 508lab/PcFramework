@@ -1,7 +1,7 @@
 const Application = {
     APIURL: "http://localhost:8080/v1/api",
     // APIURL: "https://api.dongkji.com/api/v1/api/",
-
+    HASHPATH: '/pc',
 
     httpGet: function (uri, callback) {
         $.ajax({
@@ -22,4 +22,3 @@ const Application = {
         })
     }
 }
-
