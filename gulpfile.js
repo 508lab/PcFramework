@@ -1,4 +1,5 @@
-const { src, dest, watch } = require('gulp');
+const { src, dest, watch, series } = require('gulp');
+const { delDir } = require('./until/file');
 const uglifycss = require('gulp-uglifycss');
 const htmlmin = require('gulp-htmlmin');
 const babel = require('gulp-babel');
@@ -24,6 +25,7 @@ async function htmlTask() {
  * js task
  */
 async function jsTask(env) {
+    delDir('dist/js/');
     if (env === 'build') {
         return src('src/js/*.js')
             .pipe(babel({
@@ -42,6 +44,7 @@ async function jsTask(env) {
  * css task
  */
 async function cssTask() {
+    delDir('dist/css/');
     return src('src/css/**')
         .pipe(uglifycss({
             "maxLineLen": 80,
@@ -50,9 +53,19 @@ async function cssTask() {
 }
 
 /**
+ * img task
+ */
+async function imgTask() {
+    delDir('dist/img/');
+    return src('src/img/**')
+        .pipe(dest('dist/img/'));
+}
+
+/**
  * plugin task
  */
 async function pluginTask() {
+    delDir('dist/plugin/');
     return src('src/plugin/**')
         .pipe(dest('dist/plugin/'));
 }
@@ -78,7 +91,7 @@ async function start() {
     watch('src/js/**', jsTask);
     watch('src/plugin/**', pluginTask);
     watch('src/**.html', htmlTask);
-    watch('src/public/**.html', htmlTask);
+    watch('src/public/**.html', series(htmlTask));
     browserSync.init({
         port: 8000,
         server: {
