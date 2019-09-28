@@ -6,8 +6,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <meta name="description" content="508工作室资源仓库,整合It信息资源。">
-    <meta name="keywords" content="508工作室,508,资源仓库,IT,信息查询,软件开发,资源,在线上传">
-    <title>508工作室-贡献者</title>
+    <meta name="keywords" content="508工作室,508,资源仓库,IT,信息查询,软件开发,资源,新闻">
+    <title>508工作室-新闻</title>
     <link rel="icon" type="image/png" href="https://www.dongkji.com/508logo.png">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@3.3.7/dist/css/bootstrap.min.css" rel="stylesheet">
     <link rel="stylesheet" href="../css/public.css">
@@ -22,6 +22,22 @@
         ul.content li a {
             font-size: 20px;
         }
+
+        div.news {
+            box-shadow: 0px 27px 19px #b2b8b9;
+            -webkit-box-shadow: 0px 27px 19px #b2b8b9;
+        }
+
+        div.news .row {
+            border: 1px solid transparent;
+            border-color: #e7e7e7;
+            border-radius: 4px;
+            margin-right: auto;
+            margin-left: auto;
+        }
+        div.news .row .col-md-8{
+            padding-top: 15px;
+        }
     </style>
 </head>
 
@@ -29,18 +45,23 @@
     @@include('../public/header.html')
     <section>
         <div style="width: 50%;margin: 0 auto;margin-top: 20px;">
-            <h3 style="text-align: center;color: blue;">此仓库贡献者</h3>
-            <ul class="content">
-                <li><a href="https://github.com/soha1018" target="_blank">soha1018</a></li>
-                <li><a href="https://github.com/1487246410" target="_blank">CC</a></li>
-            </ul>
-            <p style="margin: 20px 20px;">一个人可以走的很快，一群人可以走的很远，欢迎加入508工作室。</p>
+            <div class="search" style="width: 50%;margin: 0 auto;height: 40px;">
+                <div class="col-lg-12">
+                    <div class="input-group"><input type="text" id="q" class="form-control" placeholder="此处查询支持Query DSL">                        <span
+                            class="input-group-btn"><button class="btn btn-primary" type="button" id="search">查询</button></span></div>
+                </div>
+            </div>
+            <div style="margin-top: 50px;" class="news">
+
+            </div>
         </div>
     </section>
     @@include('../public/footer.html')
     <script src="https://cdn.bootcss.com/jquery/3.4.1/jquery.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@3.3.7/dist/js/bootstrap.min.js"></script>
+    <script src="../js/news.js"></script>
     <script type="text/javascript" id="clustrmaps" src="//cdn.clustrmaps.com/map_v2.js?d=SIzkre3Gy_36sEnZiYrLzmOB2k5UR-tzpQiiz0zSo-A&cl=ffffff&w=a"></script>
+    
 </body>
 
 </html>

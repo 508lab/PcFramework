@@ -4,6 +4,7 @@ init();
 
 function init() {
     $('body').mLoading("show");
+    initTip();
     Application.httpGet('/warehouse', function (data) {
         let html = '';
         data.map(function (ele) {
@@ -17,6 +18,13 @@ function init() {
     initValidate();
     search();
     initContribution();
+}
+
+function initTip() {
+    Application.httpGet('/poetry/2833324528@qq.com', function (data) {
+        let obj = JSON.parse(data);
+        $('#tip').html(obj.c + '&emsp;&emsp;' + `<a href="${obj.l || ''}" target="_blank">&lt;&lt;${obj.a || ''}&gt;&gt;</a>`)
+    });
 }
 
 /**
@@ -80,9 +88,11 @@ function fullListView(ele) {
 
 
 function fullTagView(arr) {
-    return arr.map(function (e) {
-        return `<span class="label label-primary">${e}</span>`;
+    let html = '';
+    arr.map(function (e) {
+        html += `&ensp;<span class="label label-primary">${e}</span> `;
     })
+    return html;
 }
 
 /**
