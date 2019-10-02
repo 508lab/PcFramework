@@ -5,6 +5,7 @@ init();
 function init() {
     $('body').mLoading("show");
     initTip();
+    $('header nav li.home').addClass('active');
     Application.httpGet('/warehouse', function (data) {
         let html = '';
         data.map(function (ele) {

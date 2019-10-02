@@ -5,6 +5,7 @@ function init() {
 }
 
 function initView() {
+    $('header nav li.nnews').addClass('active');
     Application.httpGet('/news', function (data) {
         let html = '';
         data.map(function (ele) {
