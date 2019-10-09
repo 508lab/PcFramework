@@ -1,6 +1,7 @@
 init();
 
 function init() {
+    $('body').mLoading("show");
     initView();
 }
 
@@ -12,6 +13,7 @@ function initView() {
             html += fullListView(JSON.parse(ele));
         });
         $('.news').html(html);
+        $('body').mLoading("hide");
     });
 }
 

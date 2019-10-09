@@ -13,18 +13,45 @@
                 <span>帮助</span>
             </h5>
             <div class="com"><a href="https://github.com/508lab" target="_blank">Gihub</a></div>
-            <div class="com"><a href="#" onclick="openUrl('/page/contribution.html')" >贡献列表</a></div>
+            <div class="com"><a href="#" onclick="openUrl('/page/contribution.html')">贡献列表</a></div>
             <div class="com"><a href="https://github.com/508lab/ForeignApi/issues" target="_blank">问题反馈</a></div>
         </div>
         <div class="col-md-4">
             <h5>
                 <span>关于我们</span>
             </h5>
+            <div class="com"><a href="#" data-toggle="modal" data-target="#statementModal">声明</a></div>
             <div class="com"><a href="https://www.dongkji.com" target="_blank">商务合作</a></div>
         </div>
     </div>
     <p style="margin-top: 10px;">
         <a href="http://www.beian.gov.cn" target="_blank">晋ICP备19005965号</a>
     </p>
+
+
+    <div class="modal fade" id="statementModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                    <h4 class="modal-title" id="myModalLabel">508工作室声明</h4>
+                </div>
+                <div class="modal-body">
+                    <div class="alert alert-info" role="alert" style="text-align: left;">
+                        <p>评论数据来源于网易云</p>
+                        <p>软件仓库数据来源于网络</p>
+                        <p>资源仓库数据来源于Github</p>
+                        <p>如有侵权请立即联系本人删除</p>
+                        <p>此外我们希望您在调用我们的接口时,可以加入以上声明!</p>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-primary" data-dismiss="modal">确认</button>
+                </div>
+            </div>
+        </div>
+    </div>
 </footer>
+<script src="https://cdn.bootcss.com/jquery/3.4.1/jquery.min.js"></script>
+<script src="https://www.dongkji.com/pc/plugin/loading/jquery.mloading.js"></script>
 <script type="text/javascript" id="clustrmaps" src="//cdn.clustrmaps.com/map_v2.js?d=SIzkre3Gy_36sEnZiYrLzmOB2k5UR-tzpQiiz0zSo-A&cl=ffffff&w=a"></script>

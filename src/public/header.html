@@ -1,3 +1,4 @@
+<link rel="stylesheet" href="https://www.dongkji.com/pc/plugin/loading/jquery.mloading.css">
 <header>
     <nav class="navbar navbar-inverse navbar-static-top">
         <div class="container-fluid" style="width: 80%; margin: 0 auto;">
@@ -5,6 +6,15 @@
                 <ul class="nav navbar-nav">
                     <li class="home"><a href="#" onclick="openUrl('/index.html')">508</a></li>
                     <li class="nnews"><a href="#" onclick="openUrl('/page/news.html')">新闻</a></li>
+                    <li role="presentation" class="dropdown contribution">
+                        <a class="dropdown-toggle" data-toggle="dropdown" href="#" onclick="openUrl('/page/add.html#warehouse')" role="button" aria-haspopup="true" aria-expanded="false">
+                            贡献<span class="caret"></span>
+                        </a>
+                        <ul class="dropdown-menu">
+                            <li><a href="#warehouse">添加资源</a></li>
+                            <li><a href="#news">添加新闻</a></li>
+                        </ul>
+                    </li>
                 </ul>
             </div>
         </div>
