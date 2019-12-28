@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <meta name="description" content="508工作室资源仓库,整合It信息资源。">
+    <meta name="keywords" content="508工作室,508,资源仓库,IT,信息查询,软件开发,资源,新闻">
+    <title>508工作室-网站全文检索</title>
+    <link rel="icon" type="image/png" href="https://www.dongkji.com/508logo.png">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@3.3.7/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="../css/public.css">
+    <script src="../js/conf.js"></script>
+    <script src="../js/goobal.js"></script>
+    <style>
+        a#clustrmaps-widget-v2,
+        #clustrmaps-widget-v2 {
+            display: none !important;
+        }
+    </style>
+</head>
+
+<body>
+    @@include('../public/header.html')
+    <section>
+        <div style="width: 50%;margin: 0 auto;margin-top: 20px;">
+            <div class="alert alert-info alert-dismissible" role="alert">
+                <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                <span id="tip">只需输入您的网址，剩下的工作就让我们来完成吧。轻松爬取网站内容并实现搜索功能。</span>
+            </div>
+            <div class="form-group">
+                <label class="col-sm-2 control-label">链接</label>
+                <input type="url" class="form-control" id="url" placeholder="http://508lab.github.io">
+            </div>
+            <div class="form-group">
+                <label class="col-sm-2 control-label">邮箱</label>
+                <input type="email" class="form-control" id="email" placeholder="请输入您的邮箱">
+            </div>
+            <div style="text-align: left;">
+                <button type="button" class="btn btn-primary" style="width: 120px;" id="add">申请</button>
+            </div>
+
+            <div class="alert alert-info alert-warning" role="alert" style="margin-top: 20px;">
+                <button type="button" class="close" data-dismiss="alert"></button>
+                <span id="tip">
+                    注意：<br>
+                    1.目前无法为单页面应用提供服务<br>
+                    2.目前并不会收费(定制化需要收费)<br>
+                    3.三天之内我将为您提供对应的接口,并发送到您的邮箱<br>
+                    4.每周末我将更新对应的页面数据
+                </span>
+            </div>
+        </div>
+    </section>
+    @@include('../public/footer.html')
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@3.3.7/dist/js/bootstrap.min.js"></script>
+    <script src="../plugin/bootstrap/bootstrap-validate.js"></script>
+    <script src="../js/website.js"></script>
+    <script type="text/javascript" id="clustrmaps" src="//cdn.clustrmaps.com/map_v2.js?d=SIzkre3Gy_36sEnZiYrLzmOB2k5UR-tzpQiiz0zSo-A&cl=ffffff&w=a"></script>
+</body>
+
+</html>

@@ -1,3 +1,20 @@
+<script>function IsPC() {
+    var userAgentInfo = navigator.userAgent;
+    var Agents = ["Android", "iPhone",
+        "SymbianOS", "Windows Phone",
+        "iPad", "iPod"];
+    var flag = true;
+    for (var v = 0; v < Agents.length; v++) {
+        if (userAgentInfo.indexOf(Agents[v]) > 0) {
+            flag = false;
+            break;
+        }
+    }
+    return flag;
+}
+if (!IsPC()) {
+    window.location.href = 'https://www.dongkji.com/h5';
+}</script>
 <link rel="stylesheet" href="https://www.dongkji.com/pc/plugin/loading/jquery.mloading.css">
 <header>
     <nav class="navbar navbar-inverse navbar-static-top">
@@ -6,6 +23,7 @@
                 <ul class="nav navbar-nav">
                     <li class="home"><a href="#" onclick="openUrl('/index.html')">508</a></li>
                     <li class="nnews"><a href="#" onclick="openUrl('/page/news.html')">新闻</a></li>
+                    <li class="nwebsite"><a href="#" onclick="openUrl('/page/website.html')">全文检索</a></li>
                     <li role="presentation" class="dropdown contribution">
                         <a class="dropdown-toggle" data-toggle="dropdown" href="#" onclick="openUrl('/page/add.html#warehouse')" role="button" aria-haspopup="true" aria-expanded="false">
                             贡献<span class="caret"></span>
